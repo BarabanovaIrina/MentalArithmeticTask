@@ -29,7 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
           output=$(python3 api_work.py)
-          echo $output
+          echo ${{fromJson($output)}}
 #          echo "::set-output name=matrix::$(python3 api_work.py)"
 
 #  test_echo:
