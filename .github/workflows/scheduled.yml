@@ -32,8 +32,8 @@ jobs:
 
   test_echo:
     runs-on: ubuntu-latest
-      strategy:
-        matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
+    strategy:
+      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
 
     steps:
       - name: Test echo
