@@ -1,7 +1,7 @@
 name: Run builds
 
 on:
-  scheedule:
+  schedule:
     - cron: "*/5 * * * *"
 
 
