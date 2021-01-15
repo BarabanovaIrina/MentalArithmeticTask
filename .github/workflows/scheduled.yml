@@ -12,56 +12,53 @@ on:
 #      - name: Test
 #        run: echo "Hello World"
 
-jobs:
-  branch_matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v2
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      - id: set-matrix
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
-          python3 api_work.py
-          content=$(cat api_result.json)
-          echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
-#          echo "::set-output name=matrix::${content//'%'/'%25'}"
-
-  test_echo:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
-
-    steps:
-      - name: Test echo
-        run: echo ${{ matrix.branch }}
-
-#  integration_test:
+#jobs:
+#  branch_matrix:
 #    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        python-version: [ 3.7 ]
-#    #      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
-#
+#    outputs:
+#      matrix: ${{ steps.set-matrix.outputs.matrix }}
 #    steps:
 #      - name: Checkout branch
 #        uses: actions/checkout@v2
-##        with:
-##          ref: ${{ matrix.branch }}
-#      - name: Set up Python ${{ matrix.python-version }}
+#      - name: Set up Python 3.7
 #        uses: actions/setup-python@v2
 #        with:
-#          python-version: ${{ matrix.python-version }}
-#      - name: Install dependencies
+#          python-version: 3.7
+#      - id: set-matrix
 #        run: |
 #          python -m pip install --upgrade pip
-#          pip install pytest
-#      - name: Test with pytest
-#        run: |
-#          pytest -s test
+#          pip install requests
+#          python3 api_work.py
+#          content=$(cat api_result.json)
+#          echo "::set-output name=matrix::${content//'%'/'%25'}"
+
+#  test_echo:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
+#
+#    steps:
+#      - name: Test echo
+#        run: echo ${{ matrix.branch }}
+
+jobs:
+  integration_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.7 ]
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+      - name: Test with pytest
+        run: |
+          pytest -s test
