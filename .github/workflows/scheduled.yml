@@ -29,8 +29,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
           echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
-      - name:
-          run: echo ${{ matrix.branch }}
+      - name: Test echo
+        run: echo ${{ matrix.branch }}
 
 #  integration_test:
 #    runs-on: ubuntu-latest
