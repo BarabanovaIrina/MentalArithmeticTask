@@ -30,7 +30,8 @@ jobs:
           pip install requests
           python3 api_work.py
           content=$(cat api_result.json)
-          echo "::set-output name=matrix::${content//'%'/'%25'}"
+          echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+#          echo "::set-output name=matrix::${content//'%'/'%25'}"
 
   test_echo:
     runs-on: ubuntu-latest
