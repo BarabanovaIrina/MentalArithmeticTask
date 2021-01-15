@@ -12,7 +12,7 @@ on:
 #      - name: Test
 #        run: echo "Hello World"
 
-#jobs:
+jobs:
 #  branch_matrix:
 #    runs-on: ubuntu-latest
 #    outputs:
