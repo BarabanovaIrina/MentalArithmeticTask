@@ -1,14 +1,9 @@
 name: Run builds
 
 on:
-  workflow_dispatch:
+  scheedule:
+    - cron: "*/5 * * * *"
 
-#jobs:
-#  job1:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Test
-#        run: echo "Hello World"
 
 #jobs:
 #  branch_matrix:
