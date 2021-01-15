@@ -2,7 +2,7 @@ name: Run heavy builds
 
 on:
   schedule:
-    - cron: "46 17 * * *"
+    - cron: "50 17 * * *"
 
 jobs:
   branch_matrix:
@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
-        python-version: [ 3.8 ]
 
     steps:
       - name: Checkout branch
