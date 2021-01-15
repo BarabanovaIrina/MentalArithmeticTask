@@ -1,0 +1,54 @@
+name: Run builds
+
+on:
+  schedule:
+    - cron: "0 18 * * *"
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo "Hello World"
+
+#jobs:
+#  branch_matrix:
+#    runs-on: ubuntu-latest
+#    outputs:
+#      matrix: ${{ steps.set-matrix.outputs.matrix }}
+#    steps:
+#      - name: Set up Python 3.7
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.7
+#      - id: set-matrix
+#        run: |
+#         python -m pip install --upgrade pip
+#         pip install requests
+#         echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
+#
+#  integration_test:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
+#
+#    steps:
+#      - name: Checkout branch
+#        uses: actions/checkout@v2
+#        with:
+#          ref: ${{ matrix.branch }}
+#      - name: Set up Python ${{ matrix.python-version }}
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: ${{ matrix.python-version }}
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install pytest
+#          pip install requests
+#          pip install -r requirements.txt
+#          pip install -r extra_requirements.txt
+#          pip install pytest-cov
+#      - name: Test with pytest
+#        run: |
+#          pytest -s test
