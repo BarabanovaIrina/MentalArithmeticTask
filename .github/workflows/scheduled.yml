@@ -22,12 +22,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+      - name: Checkout branch
+          uses: actions/checkout@main
       - id: set-matrix
         run: |
          python -m pip install --upgrade pip
          pip install requests
-         ls
-#         echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
+         echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
 
   integration_test:
     runs-on: ubuntu-latest
