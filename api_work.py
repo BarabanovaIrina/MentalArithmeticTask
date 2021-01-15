@@ -5,6 +5,7 @@ pulls_response = requests.get('https://api.github.com/repos/BarabanovaIrina/Ment
 pulls_list = json.loads(pulls_response.text)
 pulled_branches = [pull['head']['ref'] for pull in pulls_list]
 
-result = {"branch": pulled_branches}
+result = json.dumps({"branch": pulled_branches}, indent=4)
 
-print(result)
+with open('api_result.json', 'w', encoding='utf-8') as file:
+    file.write(result)
