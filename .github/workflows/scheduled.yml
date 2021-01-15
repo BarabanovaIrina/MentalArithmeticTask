@@ -12,23 +12,23 @@ on:
 #      - name: Test
 #        run: echo "Hello World"
 
-jobs:
-  branch_matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      - id: set-matrix
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
-          ls -a
-          echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
-          echo ${{ matrix.branch }}
+#jobs:
+#  branch_matrix:
+#    runs-on: ubuntu-latest
+#    outputs:
+#      matrix: ${{ steps.set-matrix.outputs.matrix }}
+#    steps:
+#      - name: Set up Python 3.7
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.7
+#      - id: set-matrix
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install requests
+#          ls -a
+#          echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
+#          echo ${{ matrix.branch }}
 
   integration_test:
     runs-on: ubuntu-latest
@@ -38,8 +38,8 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v2
-        with:
-          ref: ${{ matrix.branch }}
+#        with:
+#          ref: ${{ matrix.branch }}
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
