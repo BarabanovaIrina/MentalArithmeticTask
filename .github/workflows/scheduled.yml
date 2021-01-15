@@ -28,16 +28,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
-          echo "::set-output name=matrix::$(python3 api_work.py)"
+          output=$(python3 api_work.py)
+          echo $output
+#          echo "::set-output name=matrix::$(python3 api_work.py)"
 
-  test_echo:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
-
-    steps:
-      - name: Test echo
-        run: echo ${{ matrix.branch }}
+#  test_echo:
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
+#
+#    steps:
+#      - name: Test echo
+#        run: echo ${{ matrix.branch }}
 
 #  integration_test:
 #    runs-on: ubuntu-latest
