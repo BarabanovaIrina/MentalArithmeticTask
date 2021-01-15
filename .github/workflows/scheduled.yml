@@ -2,7 +2,7 @@ name: Run builds
 
 on:
   schedule:
-    - cron: '16 18 * * 1-6'
+    - cron: '40 18 * * 1-6'
   workflow_dispatch:
 
 #jobs:
@@ -26,8 +26,7 @@ jobs:
         run: |
          python -m pip install --upgrade pip
          pip install requests
-         pwd
-#         echo "::set-output name=matrix::{\"branch\":$(python3 api_work.py)}"
+         echo "::set-output name=matrix::{\"branch\":$(python3 .github/workflows/api_work.py)}"
 
   integration_test:
     runs-on: ubuntu-latest
