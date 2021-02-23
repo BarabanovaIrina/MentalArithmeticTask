@@ -15,3 +15,4 @@ jobs:
       with:
         chat: ${{ secrets.CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
+        status: ${{ job.status }}
