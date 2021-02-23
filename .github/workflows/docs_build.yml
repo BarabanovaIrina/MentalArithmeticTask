@@ -1,8 +1,0 @@
-on: push
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Doc Build
-        uses: andreasofthings/doc-build@v1.0
