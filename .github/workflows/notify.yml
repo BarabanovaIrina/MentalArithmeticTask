@@ -1,4 +1,4 @@
-name: telegram message
+name: telegram notify
 on:
   push:
     branches: [main]
