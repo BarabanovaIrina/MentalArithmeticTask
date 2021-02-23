@@ -15,4 +15,4 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: The ${{ github.event_name }} event triggered first step.
+          args: The ${{ github.event_name }} event triggered first step. ${{github.event}}
