@@ -17,4 +17,4 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: The ${{ github.event_name }} event triggered first step. ${{github.event.body}}
+          args: The ${{ github.event_name }} event triggered first step. Description is ${{github.event.pull_request.body}}, pr_num ${{github.event.number}}
