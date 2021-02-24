@@ -1,14 +1,14 @@
 name: telegram notify
 on:
   pull_request:
-    types: [closed]
+    types: [ closed ]
 #  push:
 #    branches: [main]
 
 jobs:
 
-  build:
-    name: Build
+  merge_job:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -17,4 +17,19 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: The ${{ github.event_name }} event triggered first step. Description is ${{github.event.pull_request.body}}, pr_num ${{github.event.number}}
+          args: 'The ${{github.event_name}} ${{github.event.pull_request.title}} (${{github.event.number}}) was merged.
+          Description ${{github.event.pull_request.body}}
+          Check it out to keep your local repository updated.'
+
+
+  close_job:
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          args: The ${{github.event_name}} ${{github.event.pull_request.title}} (${{github.event.number}}) was closed.
