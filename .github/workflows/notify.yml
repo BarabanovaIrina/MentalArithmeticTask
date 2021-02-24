@@ -17,11 +17,11 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: 'The ${{github.event_name}} ${{github.event.pull_request.title}} (#${{github.event.number}}) was merged.\n
+          args: "The ${{github.event_name}} ${{github.event.pull_request.title}} (#${{github.event.number}}) was merged.\n
+          Link: ${{github.event.pull_request.html_url}}\n
           Description: ${{github.event.pull_request.body}}\n
-          Link: ${{github.event.pull_request._links.self.href}}\n
           \n
-          Check it out to keep your local repository updated.'
+          Check it out to keep your local repository updated."
 
 
   close_job:
