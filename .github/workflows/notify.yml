@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           args: |
           The ${{github.event_name}} ${{github.event.pull_request.title}} (${{github.event.number}}) was merged.
-          "Description:" ${{github.event.pull_request.body}}
+          'Description: ${{github.event.pull_request.body}}'
           Check it out to keep your local repository updated.
 
 
