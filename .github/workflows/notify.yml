@@ -1,9 +1,8 @@
 name: telegram notify
 on:
   pull_request:
+    branches: [ main ]
     types: [ closed ]
-#  push:
-#    branches: [main]
 
 jobs:
 
@@ -20,7 +19,6 @@ jobs:
           args: "The ${{github.event_name}} '${{github.event.pull_request.title}}' (#${{github.event.number}}) was merged.
           \nLink: ${{github.event.pull_request.html_url}}
           \nDescription: ${{github.event.pull_request.body}}
-          
           \nCheck it out to keep your local repository updated."
 
 
@@ -34,4 +32,5 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: The ${{github.event_name}} ${{github.event.pull_request.title}} (${{github.event.number}}) was closed.
+          args: "The ${{github.event_name}} '${{github.event.pull_request.title}}' (#${{github.event.number}}) was closed.
+          \nLink: ${{github.event.pull_request.html_url}}"
