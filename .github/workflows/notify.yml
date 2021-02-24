@@ -20,8 +20,8 @@ jobs:
           args: "The ${{github.event_name}} '${{github.event.pull_request.title}}' (#${{github.event.number}}) was merged.
           \nLink: ${{github.event.pull_request.html_url}}
           \nDescription: ${{github.event.pull_request.body}}
-          \n
-          Check it out to keep your local repository updated."
+          
+          \nCheck it out to keep your local repository updated."
 
 
   close_job:
