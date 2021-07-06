@@ -2,42 +2,10 @@ name: Run builds
 
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: "*/5 * * * *"
-
-
-#jobs:
-#  branch_matrix:
-#    runs-on: ubuntu-latest
-#    outputs:
-#      matrix: ${{ steps.set-matrix.outputs.matrix }}
-#    steps:
-#      - name: Checkout branch
-#        uses: actions/checkout@v2
-#      - name: Set up Python 3.7
-#        uses: actions/setup-python@v2
-#        with:
-#          python-version: 3.7
-#      - id: set-matrix
-#        run: |
-#          python -m pip install --upgrade pip
-#          pip install requests
-#          python3 api_work.py
-#          content=$(cat api_result.json)
-#          echo "::set-output name=matrix::${content//'%'/'%25'}"
-
-#  test_echo:
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix: ${{fromJson(needs.branch_matrix.outputs.matrix)}}
-#
-#    steps:
-#      - name: Test echo
-#        run: echo ${{ matrix.branch }}
 
 jobs:
   integration_test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, cml, gpu]
     strategy:
       matrix:
         python-version: [ 3.7 ]
